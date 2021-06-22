@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const exphbs = require('express-handlebars');
 const passport = require('passport');
 const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session);
 
 const connectDB = require('./config/db')
 
@@ -33,7 +34,13 @@ app.set('view engine', '.hbs');
 app.use(session({
     secret: 'pizza slice',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store:  new MongoStore({
+        uri: process.env.MONGO_URI,
+        collection: 'userSessions'
+      })   
+
 }))
 
 
