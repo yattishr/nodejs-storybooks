@@ -6,8 +6,7 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Date</th>
-                <th>Story Owner</th>
+                <th>Date</th>                
                 <th>Status</th>                
                 <th></th>
             </tr>
@@ -16,8 +15,7 @@
             {{#each stories}}
                 <tr>
                     <td><a href="/stories/{{_id}}"></a>{{title}}</td>
-                    <td>{{createdAd}}</td>
-                    <td>{{name}}</td>
+                    <td>{{formatDate createdAt 'MMMM DD YYYY, h:mm a'}}</td>
                     <td><span class="dash-status">{{status}}</span></td>
                     <td></td>
                 </tr>
